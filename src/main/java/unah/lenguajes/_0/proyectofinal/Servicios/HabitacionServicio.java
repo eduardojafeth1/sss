@@ -18,4 +18,16 @@ public class HabitacionServicio {
         return habitacionRepositorio.findAll();
     }
 
+    public String crearHabitacion(Habitacion habitacion){
+        List<Habitacion> habitaciones = habitacionRepositorio.findAll();
+        for (Habitacion h : habitaciones) {
+            if(h.getPiso() == habitacion.getPiso() && h.getNumero() ==  habitacion.getNumero()){
+                return "La habitacion ya existe";
+            }
+        }
+        Habitacion newroom = new Habitacion();
+        newroom=habitacion;
+        habitacionRepositorio.save(newroom);
+        return "habitacion guardada con exito";
+    }
 }

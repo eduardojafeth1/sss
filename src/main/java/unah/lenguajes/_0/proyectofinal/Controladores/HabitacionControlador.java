@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,4 +23,8 @@ public class HabitacionControlador {
     public List<Habitacion> getHabitaciones(){
         return habitacionService.verHabitacion();
     }
+
+    @PostMapping("/crear")
+    public String crearHabitacion(@RequestBody Habitacion habitacion){
+        return habitacionService.crearHabitacion(habitacion);}
 }

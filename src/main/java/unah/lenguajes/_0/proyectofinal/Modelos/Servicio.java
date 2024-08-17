@@ -1,6 +1,6 @@
 package unah.lenguajes._0.proyectofinal.Modelos;
 
-import jakarta.annotation.Generated;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,13 +32,13 @@ public class Servicio {
     @JoinColumn(name = "cdg_tipo_servicio")
     private TipoServicio tipoServicio;
 
-    @OneToOne(mappedBy = "servicio")
+    @OneToOne(mappedBy = "servicio" ,cascade = CascadeType.REMOVE)
     private Alimento alimento;
 
-    @OneToOne(mappedBy = "servicio")
+    @OneToOne(mappedBy = "servicio",cascade = CascadeType.REMOVE)
     private Lavanderia lavanderia;
 
-    @OneToOne(mappedBy = "servicio")
+    @OneToOne(mappedBy = "servicio",cascade = CascadeType.REMOVE)
     private Transporte transporte;
 
 }

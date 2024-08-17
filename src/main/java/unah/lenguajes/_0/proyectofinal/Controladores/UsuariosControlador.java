@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +22,10 @@ public class UsuariosControlador {
     @GetMapping("/ver")
     public List<Usuarios> ver() {
         return usuariosServicio.verUsuarios();
+    }
+
+    @PostMapping("/crear")
+    public String crear(@RequestBody Usuarios usuario) {
+    return usuariosServicio.crearUsuario(usuario);
     }
 }

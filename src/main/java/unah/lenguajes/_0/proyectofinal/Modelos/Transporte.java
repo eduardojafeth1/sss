@@ -1,5 +1,7 @@
 package unah.lenguajes._0.proyectofinal.Modelos;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +22,8 @@ public class Transporte {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cdgTransporte;
 
-    private Float costo;
+    @Column(precision = 6 ,scale = 2)
+    private BigDecimal costo;
 
      @ManyToOne
     @JoinColumn(name = "cdg_servicio")

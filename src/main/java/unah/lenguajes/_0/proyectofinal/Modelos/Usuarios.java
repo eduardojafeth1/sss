@@ -14,6 +14,7 @@ public class Usuarios {
     @Id
     @Column(name = "dni")
     private String dni;
+    
     private String nombre;
     private String apellido;
     private String email;

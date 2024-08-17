@@ -1,6 +1,5 @@
 package unah.lenguajes._0.proyectofinal.Modelos;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +17,6 @@ public class TipoHabitacion {
     @Column(name = "cdg_tipo")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cdgTipo;
-    
+
     private String tipo;
 }

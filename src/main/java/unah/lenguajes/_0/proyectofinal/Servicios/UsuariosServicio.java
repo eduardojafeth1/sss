@@ -17,4 +17,16 @@ public class UsuariosServicio {
     public List<Usuarios> verUsuarios(){
         return usuariosRepositorio.findAll();
     }
+
+    public String crearUsuario(Usuarios usuario){
+        if(!usuariosRepositorio.existsById(usuario.getDni())){
+            Usuarios newuser= new Usuarios();
+            newuser=usuario;
+            usuariosRepositorio.save(newuser);
+            return ("usuario creado correctamente");
+           
+        }
+        return "usuario ya existe";
+
+    }
 }

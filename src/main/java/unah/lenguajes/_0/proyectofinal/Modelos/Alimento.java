@@ -24,7 +24,7 @@ public class Alimento {
     private Boolean almuerzo;
     private Boolean cena;
 
-       @ManyToOne
+@ManyToOne
     @JoinColumn(name = "cdg_servicio")
     private Servicio servicio;
 
