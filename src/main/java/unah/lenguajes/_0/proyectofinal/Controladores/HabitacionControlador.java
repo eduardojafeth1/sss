@@ -3,8 +3,11 @@ package unah.lenguajes._0.proyectofinal.Controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,4 +31,14 @@ public class HabitacionControlador {
     @PostMapping("/crear")
     public String crearHabitacion(@RequestBody  HabitacionDto habitacion){
         return habitacionService.crearHabitacion(habitacion);}
+
+    @PutMapping("/editar/{id}")
+    public String editarHabitacion(@PathVariable("id") int id, @RequestBody HabitacionDto habitacion){
+        return habitacionService.editarHabitacion(id, habitacion);
+    }
+
+    @DeleteMapping("/borrar/{id}")
+    public String borrarHabitacion(@PathVariable("id") int id){
+        return habitacionService.borrarHabitacion(id);
+    }
 }

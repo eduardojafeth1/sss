@@ -39,9 +39,9 @@ public class UsuariosControlador {
     return usuariosServicio.crearUsuario(usuario);
     }
 
-    @DeleteMapping("/borrar")
-    public String borrar(@RequestBody String user) {
-       return usuariosServicio.borrarUsuario(user);
+    @DeleteMapping("/borrar/{id}")
+    public String borrar(@PathVariable String id) {
+       return usuariosServicio.borrarUsuario(id);
     }
 
     @PutMapping("/editar/{dni}")
