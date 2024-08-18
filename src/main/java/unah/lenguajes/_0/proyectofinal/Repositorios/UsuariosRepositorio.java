@@ -7,5 +7,6 @@ import unah.lenguajes._0.proyectofinal.Modelos.Usuarios;
 
 @Repository
 public interface UsuariosRepositorio extends JpaRepository <Usuarios, String> {
+ 
     
 }

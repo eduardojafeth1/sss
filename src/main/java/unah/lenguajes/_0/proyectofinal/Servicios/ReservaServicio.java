@@ -1,21 +1,16 @@
 package unah.lenguajes._0.proyectofinal.Servicios;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import unah.lenguajes._0.proyectofinal.DTOs.LoginDto;
 import unah.lenguajes._0.proyectofinal.DTOs.ReservaDto;
 import unah.lenguajes._0.proyectofinal.Modelos.Alimento;
-import unah.lenguajes._0.proyectofinal.Modelos.Habitacion;
 import unah.lenguajes._0.proyectofinal.Modelos.Lavanderia;
 import unah.lenguajes._0.proyectofinal.Modelos.Reserva;
 import unah.lenguajes._0.proyectofinal.Modelos.Servicio;
 import unah.lenguajes._0.proyectofinal.Modelos.Transporte;
-import unah.lenguajes._0.proyectofinal.Modelos.Usuarios;
 import unah.lenguajes._0.proyectofinal.Repositorios.AlimentoRepositorio;
 import unah.lenguajes._0.proyectofinal.Repositorios.HabitacionRepositorio;
 import unah.lenguajes._0.proyectofinal.Repositorios.LavanderiaRepositorio;

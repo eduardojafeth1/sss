@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import unah.lenguajes._0.proyectofinal.DTOs.HabitacionDto;
 import unah.lenguajes._0.proyectofinal.Modelos.Habitacion;
 import unah.lenguajes._0.proyectofinal.Servicios.HabitacionServicio;
 
@@ -25,6 +26,6 @@ public class HabitacionControlador {
     }
 
     @PostMapping("/crear")
-    public String crearHabitacion(@RequestBody Habitacion habitacion){
+    public String crearHabitacion(@RequestBody  HabitacionDto habitacion){
         return habitacionService.crearHabitacion(habitacion);}
 }
