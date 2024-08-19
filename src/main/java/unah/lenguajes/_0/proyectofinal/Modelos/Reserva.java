@@ -2,6 +2,8 @@ package unah.lenguajes._0.proyectofinal.Modelos;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,6 +31,7 @@ public class Reserva {
     private Date fecha_fin;
     private Float costo_total;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cliente_dni")
     private Usuarios cliente;

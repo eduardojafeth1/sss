@@ -3,9 +3,12 @@ package unah.lenguajes._0.proyectofinal.Modelos;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,7 +33,7 @@ public class Habitacion {
     private String descripcion;
     
     
-    private float raiting;
+    private float rating;
     private Integer cant_calificaciones;
     private Integer sum_calificaciones;
 
@@ -42,6 +45,7 @@ public class Habitacion {
     @JoinColumn(name = "estado")
     private EstadoHabitacion estadoHabitacion;
 
-    @OneToMany(mappedBy ="habitacion",cascade =CascadeType.REMOVE)
+    @JsonIgnore
+    @OneToMany(mappedBy ="habitacion",cascade =CascadeType.REMOVE,fetch = FetchType.LAZY)
     private List<Reserva> reservas;
 }
