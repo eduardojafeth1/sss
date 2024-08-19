@@ -1,14 +1,21 @@
 package unah.lenguajes._0.proyectofinal.Servicios;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Service;
 
+import unah.lenguajes._0.proyectofinal.DTOs.FiltroFechasDto;
 import unah.lenguajes._0.proyectofinal.DTOs.HabitacionDto;
+import unah.lenguajes._0.proyectofinal.Modelos.EstadoHabitacion;
 import unah.lenguajes._0.proyectofinal.Modelos.Habitacion;
+import unah.lenguajes._0.proyectofinal.Modelos.Reserva;
 import unah.lenguajes._0.proyectofinal.Repositorios.EstadoHabitacionRepositorio;
 import unah.lenguajes._0.proyectofinal.Repositorios.HabitacionRepositorio;
+import unah.lenguajes._0.proyectofinal.Repositorios.ReservaRepositorio;
 import unah.lenguajes._0.proyectofinal.Repositorios.TipoHabitacionRepositorio;
 
 @Service
@@ -19,18 +26,21 @@ public class HabitacionServicio {
 
     @Autowired
     private TipoHabitacionRepositorio tipoHabitacionRepositorio;
-
+    
     @Autowired
     private EstadoHabitacionRepositorio estadoHabitacionRepositorio;
-
+    
+    @Autowired
+    private ReservaRepositorio reservaRepositorio;
+    
     public List<Habitacion> verHabitacion(){
         return habitacionRepositorio.findAll();
     }
 
     public String crearHabitacion(HabitacionDto habitacion){
-         List<Habitacion> habitaciones = habitacionRepositorio.findAll();
-         for (Habitacion h : habitaciones) {
-             if(h.getPiso() == habitacion.getPiso() && h.getNumero() ==  habitacion.getNumero()){
+        List<Habitacion> habitaciones = habitacionRepositorio.findAll();
+        for (Habitacion h : habitaciones) {
+            if(h.getPiso() == habitacion.getPiso() && h.getNumero() ==  habitacion.getNumero()){
                  return "La habitacion ya existe";
              } }
         // Habitacion newroom = new Habitacion();
@@ -119,6 +129,25 @@ public class HabitacionServicio {
     public Habitacion buscarHabitacion(Integer id){
         return habitacionRepositorio.findById(id).orElse(null);
     }
+    
+
+        public List<Habitacion> filtrarporfecha(FiltroFechasDto fechas) {
+            Date fechaInicio = fechas.getFechaInicio();
+            Date fechaFin = fechas.getFechafin();
+            List<Reserva> reservas = reservaRepositorio.findAll();
+            List<Habitacion> habitacionesDisponibles = new ArrayList<>();
+            List<Habitacion> todasHabitaciones = habitacionRepositorio.findAll();
+    
+            habitacionesDisponibles.addAll(todasHabitaciones);
+            for (Reserva reserva : reservas) {
+                if ((reserva.getFecha_inicio().before(fechaFin) && reserva.getFecha_fin().after(fechaInicio))) {
+                    habitacionesDisponibles.removeIf(h -> h.getId().equals(reserva.getHabitacion().getId()));
+                }
+            }
+    
+            return habitacionesDisponibles;
+        }
+    
     
 }
     
