@@ -1,6 +1,8 @@
 package unah.lenguajes._0.proyectofinal.Controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,11 @@ public class ReservaControlador {
 
     @PostMapping("/crear")
     public String crearReserva(@RequestBody ReservaDto reserva){
-        return reservaServicio.crearReserva(reserva);
+        return reservaServicio.crear(reserva);
+    }
+
+    @DeleteMapping("/borrar/{id}")
+    public String borrarReserva(@PathVariable Integer id){
+        return reservaServicio.borrarReserva(id);
     }
 }

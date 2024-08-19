@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import unah.lenguajes._0.proyectofinal.Modelos.Usuarios;
@@ -47,5 +48,10 @@ public class UsuariosControlador {
     @PutMapping("/editar/{dni}")
     public String editar(@RequestBody Usuarios usuario,@PathVariable String dni) {
         return usuariosServicio.EditarUsuario(usuario, dni);
+    }
+
+    @GetMapping("Login")
+    public String login(@RequestParam String email, @RequestParam String contraseña) {
+    return usuariosServicio.Login(email, contraseña);
     }
 }

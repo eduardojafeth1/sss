@@ -1,8 +1,8 @@
 package unah.lenguajes._0.proyectofinal.Modelos;
 
 import java.sql.Date;
-import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -36,6 +37,6 @@ public class Reserva {
     @JoinColumn(name = "cdg_habitacion")
     private Habitacion habitacion;
 
-    @OneToMany(mappedBy = "reserva")
-    private List<Servicio> servicios;
+    @OneToOne(mappedBy = "reserva", cascade =  CascadeType.ALL)
+    private Servicio servicios;
 }

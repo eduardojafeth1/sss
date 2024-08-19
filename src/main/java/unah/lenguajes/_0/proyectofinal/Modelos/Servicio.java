@@ -24,21 +24,21 @@ public class Servicio {
 
     private Float costo;
     
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "cdg_reserva")
     private Reserva reserva;
 
-    @ManyToOne
-    @JoinColumn(name = "cdg_tipo_servicio")
-    private TipoServicio tipoServicio;
+    // @ManyToOne
+    // @JoinColumn(name = "cdg_tipo_servicio")
+    // private TipoServicio tipoServicio;
 
-    @OneToOne(mappedBy = "servicio" ,cascade = CascadeType.REMOVE)
+    @OneToOne(mappedBy = "servicio" ,cascade = CascadeType.ALL)
     private Alimento alimento;
 
-    @OneToOne(mappedBy = "servicio",cascade = CascadeType.REMOVE)
+    @OneToOne(mappedBy = "servicio",cascade = CascadeType.ALL)
     private Lavanderia lavanderia;
 
-    @OneToOne(mappedBy = "servicio",cascade = CascadeType.REMOVE)
+    @OneToOne(mappedBy = "servicio",cascade = CascadeType.ALL)
     private Transporte transporte;
 
 }

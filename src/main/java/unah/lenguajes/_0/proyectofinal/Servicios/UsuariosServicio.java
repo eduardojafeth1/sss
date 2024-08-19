@@ -66,4 +66,14 @@ public class UsuariosServicio {
         }
         return "Usuario no existe";
     }
+
+
+    public String Login(String email,String password){
+        try {
+            return usuariosRepositorio.findUsuariosByEmailAndContrasena(email, password).get().getDni();
+            
+        } catch (Exception e) {
+            return "email o contrasena incorrecta";
+        }
+    }
 }

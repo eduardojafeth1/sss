@@ -116,5 +116,88 @@ public class ReservaServicio {
         // }
         // return null;
     }
+
+    public String crear(ReservaDto booked){
+        Reserva newReserva = new Reserva();
+        float costo=0;
+        if(!usuariosRepositorio.existsById(booked.getDni()) || !habitacionRepositorio.existsById(booked.getCdg_habitacion()) ){
+            return "usurio o habitacion no existen";
+        }
+        // try {
+            newReserva.setCliente(usuariosRepositorio.findById(booked.getDni()).get());
+            newReserva.setHabitacion(habitacionRepositorio.findById(booked.getCdg_habitacion()).get());
+            // costo+=habitacionRepositorio.findById(booked.getCdg_habitacion()).get().getPrecio_noche()*(Integer.valueOf(Date. booked.getFecha_fin()-booked.getFecha_fin()));
+            newReserva.setFecha_inicio(booked.getFecha_inicio());
+            newReserva.setFecha_fin(booked.getFecha_fin());
+            
+            Servicio newServicio =new Servicio();
+
+            Alimento newAlimento =new Alimento();
+            newAlimento.setDesayuno(booked.isDesayuno());
+            newAlimento.setAlmuerzo(booked.isAlmuerzo());
+            newAlimento.setCena(booked.isCena());
+            
+
+            newServicio.setAlimento(newAlimento);
+
+            Lavanderia newlLavanderia = new Lavanderia();
+            newlLavanderia.setCant_prendas(booked.getCantidadPrendas());
+            newlLavanderia.setCosto_prendas(3);
+            newlLavanderia.setCosto_total(booked.getCantidadPrendas()*3);
+
+
+            newServicio.setLavanderia(null);
+
+            Transporte newTransporte = new Transporte();
+            newTransporte.setCosto(BigDecimal.valueOf(0));
+            if(booked.isTransporte()){
+                newTransporte.setCosto(BigDecimal.valueOf(50));
+            }
+
+            newServicio.setTransporte(newTransporte);
+
+            
+            // newReserva.setCosto_total(null);
+            
+            // newServicio.setTipoServicio();
+            newAlimento.setServicio(newServicio);
+            newTransporte.setServicio(newServicio);
+            newlLavanderia.setServicio(newServicio);
+
+            newServicio.setReserva(newReserva);
+            
+            newReserva.setServicios(newServicio);
+            
+            
+            
+            
+            
+            reservaRepositorio.save(newReserva);
+            
+            
+            return "Reserva creada Exitosamente";
+            
+        // } catch (Exception e) {
+        //     return "hubo un error";
+        // }
+    };
+
+
+    public String borrarReserva(Integer id){
+        try {
+            if(reservaRepositorio.existsById(id)){
+                reservaRepositorio.deleteById(id);
+                return "Reserva borrada exitosament";
+            }
+            return "Reserva no existe";
+            
+        } catch (Exception e) {
+            return "hubo un eror";
+        }
+
+    };
+
+
+    
     
 }
