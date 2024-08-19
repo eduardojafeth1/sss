@@ -47,8 +47,15 @@ public class HabitacionServicio {
         newHabitacion.setNumero(habitacion.getNumero());
         newHabitacion.setPiso(habitacion.getPiso());
         newHabitacion.setPrecio_noche(habitacion.getPrecio_noche());
-        newHabitacion.setTipoHabitacion(tipoHabitacionRepositorio.findById(habitacion.getTipo()).get());
-        newHabitacion.setEstadoHabitacion(estadoHabitacionRepositorio.findById(habitacion.getEstado()).get());
+
+        try {
+            newHabitacion.setTipoHabitacion(tipoHabitacionRepositorio.findById(habitacion.getTipo()).get());
+            newHabitacion.setEstadoHabitacion(estadoHabitacionRepositorio.findById(habitacion.getEstado()).get());
+            
+        } catch (Exception e) {
+            newHabitacion.setTipoHabitacion(tipoHabitacionRepositorio.findById(1).get());
+            newHabitacion.setEstadoHabitacion(estadoHabitacionRepositorio.findById(1).get());
+        }
 
         habitacionRepositorio.save(newHabitacion);
 
