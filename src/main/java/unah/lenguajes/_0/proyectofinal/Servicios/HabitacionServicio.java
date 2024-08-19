@@ -48,14 +48,19 @@ public class HabitacionServicio {
         newHabitacion.setPiso(habitacion.getPiso());
         newHabitacion.setPrecio_noche(habitacion.getPrecio_noche());
 
-        try {
-            newHabitacion.setTipoHabitacion(tipoHabitacionRepositorio.findById(habitacion.getTipo()).get());
-            newHabitacion.setEstadoHabitacion(estadoHabitacionRepositorio.findById(habitacion.getEstado()).get());
+        
+            if(tipoHabitacionRepositorio.existsById(habitacion.getTipo())){
+                newHabitacion.setTipoHabitacion(tipoHabitacionRepositorio.findById(habitacion.getTipo()).get());
+            }
+            if (estadoHabitacionRepositorio.existsById(habitacion.getEstado())) {
+                
+                newHabitacion.setEstadoHabitacion(estadoHabitacionRepositorio.findById(habitacion.getEstado()).get());
+            }else{
+
+                newHabitacion.setTipoHabitacion(tipoHabitacionRepositorio.findById(1).get());
+                newHabitacion.setEstadoHabitacion(estadoHabitacionRepositorio.findById(1).get());
+            }
             
-        } catch (Exception e) {
-            newHabitacion.setTipoHabitacion(tipoHabitacionRepositorio.findById(1).get());
-            newHabitacion.setEstadoHabitacion(estadoHabitacionRepositorio.findById(1).get());
-        }
 
         habitacionRepositorio.save(newHabitacion);
 
@@ -110,6 +115,10 @@ public class HabitacionServicio {
         }
     
     };
+
+    public Habitacion buscarHabitacion(Integer id){
+        return habitacionRepositorio.findById(id).orElse(null);
+    }
     
 }
     

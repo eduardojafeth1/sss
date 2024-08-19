@@ -77,7 +77,7 @@ public class ReservaServicio {
                 costo+=25;
                 alimento.setCena(true);
             }
-            lavanderia.setCosto_prendas(3);
+            lavanderia.setCosto_prenda(3);
             lavanderia.setCant_prendas(reserva.getCantidadPrendas());
             lavanderia.setCosto_total(reserva.getCantidadPrendas()*3);
             costo+=(reserva.getCantidadPrendas()*3);
@@ -142,11 +142,11 @@ public class ReservaServicio {
 
             Lavanderia newlLavanderia = new Lavanderia();
             newlLavanderia.setCant_prendas(booked.getCantidadPrendas());
-            newlLavanderia.setCosto_prendas(3);
+            newlLavanderia.setCosto_prenda(3);
             newlLavanderia.setCosto_total(booked.getCantidadPrendas()*3);
 
 
-            newServicio.setLavanderia(null);
+            newServicio.setLavanderia(newlLavanderia);
 
             Transporte newTransporte = new Transporte();
             newTransporte.setCosto(BigDecimal.valueOf(0));

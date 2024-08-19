@@ -1,5 +1,7 @@
 package unah.lenguajes._0.proyectofinal.Modelos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +28,7 @@ public class Alimento {
 
 @ManyToOne
     @JoinColumn(name = "cdg_servicio")
+    @JsonIgnore
     private Servicio servicio;
 
 

@@ -41,4 +41,9 @@ public class HabitacionControlador {
     public String borrarHabitacion(@PathVariable("id") int id){
         return habitacionService.borrarHabitacion(id);
     }
+
+    @GetMapping("buscar/{id}")
+    public Habitacion buscarHabitacion(@PathVariable("id") int id){
+        return habitacionService.buscarHabitacion(id);
+    }
 }

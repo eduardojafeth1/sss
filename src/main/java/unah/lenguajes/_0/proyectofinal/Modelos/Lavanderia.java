@@ -1,5 +1,7 @@
 package unah.lenguajes._0.proyectofinal.Modelos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,12 +21,13 @@ public class Lavanderia {
     private Integer cdgLavanderia;
 
     private Integer Cant_prendas;
-    private float costo_prendas ;
+    private float costo_prenda ;
     private float costo_total ;
 
 
     @ManyToOne
     @JoinColumn(name = "cdg_servicio")
+    @JsonIgnore
     private Servicio servicio;
     
     
