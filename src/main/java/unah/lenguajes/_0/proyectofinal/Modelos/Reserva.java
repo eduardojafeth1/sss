@@ -31,7 +31,7 @@ public class Reserva {
     private Date fecha_fin;
     private Float costo_total;
 
-    @JsonIgnore
+    
     @ManyToOne
     @JoinColumn(name = "cliente_dni")
     private Usuarios cliente;

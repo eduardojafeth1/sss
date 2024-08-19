@@ -41,7 +41,7 @@ public class HabitacionServicio {
         Habitacion newHabitacion = new Habitacion();
         try {
         newHabitacion.setCant_calificaciones(0);
-        newHabitacion.setRaiting(0);
+        newHabitacion.setRating(0);
         newHabitacion.setSum_calificaciones(0);
         newHabitacion.setDescripcion(habitacion.getDescripcion());
         newHabitacion.setNumero(habitacion.getNumero());
