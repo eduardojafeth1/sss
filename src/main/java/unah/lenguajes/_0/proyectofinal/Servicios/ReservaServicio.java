@@ -1,6 +1,7 @@
 package unah.lenguajes._0.proyectofinal.Servicios;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,7 @@ public class ReservaServicio {
 
     @Autowired
     private TransporteRepositorio transporteRepositorio;
-    
+
     @Autowired
     private LavanderiaRepositorio lavanderiaRepositorio;
 
@@ -50,20 +51,23 @@ public class ReservaServicio {
         if(!usuariosRepositorio.existsById(booked.getDni()) || !habitacionRepositorio.existsById(booked.getCdg_habitacion()) ){
             return "usurio o habitacion no existen";
         }
-        // try {
+        try {
             newReserva.setCliente(usuariosRepositorio.findById(booked.getDni()).get());
             newReserva.setHabitacion(habitacionRepositorio.findById(booked.getCdg_habitacion()).get());
             // costo+=habitacionRepositorio.findById(booked.getCdg_habitacion()).get().getPrecio_noche()*(Integer.valueOf(Date. booked.getFecha_fin()-booked.getFecha_fin()));
             newReserva.setFecha_inicio(booked.getFecha_inicio());
             newReserva.setFecha_fin(booked.getFecha_fin());
-            
+
             Servicio newServicio =new Servicio();
 
             Alimento newAlimento =new Alimento();
             newAlimento.setDesayuno(booked.isDesayuno());
+            costo+=10;
             newAlimento.setAlmuerzo(booked.isAlmuerzo());
+            costo+=10;
             newAlimento.setCena(booked.isCena());
-            
+            costo+=10;
+
 
             newServicio.setAlimento(newAlimento);
 
@@ -83,30 +87,30 @@ public class ReservaServicio {
 
             newServicio.setTransporte(newTransporte);
 
-            
+
             // newReserva.setCosto_total(null);
-            
+
             // newServicio.setTipoServicio();
             newAlimento.setServicio(newServicio);
             newTransporte.setServicio(newServicio);
             newlLavanderia.setServicio(newServicio);
 
             newServicio.setReserva(newReserva);
-            
+
             newReserva.setServicios(newServicio);
-            
-            
-            
-            
-            
+
+
+
+
+
             reservaRepositorio.save(newReserva);
-            
-            
+
+
             return "Reserva creada Exitosamente";
-            
-        // } catch (Exception e) {
-        //     return "hubo un error";
-        // }
+
+         } catch (Exception e) {
+             return "hubo un error";
+         }
     };
 
 
@@ -117,14 +121,26 @@ public class ReservaServicio {
                 return "Reserva borrada exitosament";
             }
             return "Reserva no existe";
-            
+
         } catch (Exception e) {
             return "hubo un eror";
         }
 
     };
 
+    public Reserva Buscarporid(Integer id){
+        if(reservaRepositorio.existsById(id)){
+            return reservaRepositorio.findById(id).get();
+        }
+        return null;
 
-    
-    
+    }
+
+    public List<Reserva> verReservas(){
+        return reservaRepositorio.findAll();
+    }
+
+
+
+
 }

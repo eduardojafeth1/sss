@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import unah.lenguajes._0.proyectofinal.DTOs.ResponseLogin;
 import unah.lenguajes._0.proyectofinal.Modelos.Usuarios;
 import unah.lenguajes._0.proyectofinal.Servicios.UsuariosServicio;
 
@@ -51,7 +52,7 @@ public class UsuariosControlador {
     }
 
     @GetMapping("Login")
-    public String login(@RequestParam String email, @RequestParam String contraseña) {
+    public ResponseLogin login(@RequestParam String email, @RequestParam String contraseña) {
     return usuariosServicio.Login(email, contraseña);
     }
 }

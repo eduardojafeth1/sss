@@ -45,7 +45,10 @@ public class Habitacion {
     @JoinColumn(name = "estado")
     private EstadoHabitacion estadoHabitacion;
 
-    @JsonIgnore
+    
+
+    
     @OneToMany(mappedBy ="habitacion",cascade =CascadeType.REMOVE,fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Reserva> reservas;
 }

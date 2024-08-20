@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Service;
 
 import unah.lenguajes._0.proyectofinal.DTOs.FiltroFechasDto;
 import unah.lenguajes._0.proyectofinal.DTOs.HabitacionDto;
-import unah.lenguajes._0.proyectofinal.Modelos.EstadoHabitacion;
 import unah.lenguajes._0.proyectofinal.Modelos.Habitacion;
 import unah.lenguajes._0.proyectofinal.Modelos.Reserva;
 import unah.lenguajes._0.proyectofinal.Repositorios.EstadoHabitacionRepositorio;

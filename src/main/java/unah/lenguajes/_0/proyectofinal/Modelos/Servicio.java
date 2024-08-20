@@ -1,13 +1,15 @@
 package unah.lenguajes._0.proyectofinal.Modelos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -24,13 +26,12 @@ public class Servicio {
 
     private Float costo;
     
-    @OneToOne
+    @OneToOne(fetch =FetchType.LAZY)
     @JoinColumn(name = "cdg_reserva")
+    @JsonIgnore
     private Reserva reserva;
 
-    // @ManyToOne
-    // @JoinColumn(name = "cdg_tipo_servicio")
-    // private TipoServicio tipoServicio;
+
 
     @OneToOne(mappedBy = "servicio" ,cascade = CascadeType.ALL)
     private Alimento alimento;
