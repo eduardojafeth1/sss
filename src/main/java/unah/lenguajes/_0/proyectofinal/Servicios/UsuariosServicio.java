@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import unah.lenguajes._0.proyectofinal.DTOs.ResponseLogin;
 import unah.lenguajes._0.proyectofinal.Modelos.Usuarios;
 import unah.lenguajes._0.proyectofinal.Repositorios.UsuariosRepositorio;
 
@@ -68,12 +69,16 @@ public class UsuariosServicio {
     }
 
 
-    public String Login(String email,String password){
+    public ResponseLogin Login(String email,String password){
         try {
-            return usuariosRepositorio.findUsuariosByEmailAndContrasena(email, password).get().getDni();
+            ResponseLogin  responseLogin = new ResponseLogin();;
+            responseLogin.setDni(usuariosRepositorio.findUsuariosByEmailAndContrasena(email, password).get().getDni());
+            responseLogin.setTipo(usuariosRepositorio.findUsuariosByEmailAndContrasena(email, password).get().getTipo());
+
+            return responseLogin;
             
         } catch (Exception e) {
-            return "email o contrasena incorrecta";
+            return null;
         }
     }
 }

@@ -27,9 +27,11 @@ public class Usuarios {
     private String email;
     private String telefono;
     private String contrasena;
+    
     private Integer tipo;
 
     @JsonIgnore
     @OneToMany(mappedBy = "cliente",cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
+
     private List<Reserva> reservas;
 }
